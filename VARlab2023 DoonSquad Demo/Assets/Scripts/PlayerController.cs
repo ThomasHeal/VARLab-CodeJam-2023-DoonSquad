@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public float remainingJumpCooldown = 0;
 
     public bool dashUsed = false;
-    private const float DASH_COOLDOWN = 0.25f;
+    private const float DASH_COOLDOWN = 1f;
     public float remainingDashCooldown = 0;
     public const float DASH_SPEED = 30.0f;
     public const float DASH_DURATION = 0.6f;
@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
 
         // Hides cursor while playing. Uncomment to see cursor.
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
     }
 
     // Update is called once per frame
