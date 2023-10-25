@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
 
+    //boosted jump height
+    public bool boostedHeight = false;
+
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
@@ -37,8 +40,8 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
 
         // Hides cursor while playing. Uncomment to see cursor.
-        // Cursor.lockState = CursorLockMode.Locked;
-        // Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -91,7 +94,14 @@ public class PlayerController : MonoBehaviour
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && canMove && characterController.isGrounded)
         {
-            moveDirection.y = jumpSpeed;
+            float modifiedJumpSpeed = jumpSpeed;
+            if(boostedHeight){
+                modifiedJumpSpeed = jumpSpeed * 2f;
+                moveDirection.y = modifiedJumpSpeed;
+                boostedHeight = false;
+            }else{
+                moveDirection.y = jumpSpeed;
+            }
             remainingJumpCooldown = JUMP_COOLDOWN;
             remainingDashDuration = 0;
         }
@@ -103,9 +113,19 @@ public class PlayerController : MonoBehaviour
         // Double jump
         if (Input.GetKeyDown(KeyCode.Space) && canMove && !doubleJumpUsed && remainingJumpCooldown == 0)
         {
-            moveDirection.y = jumpSpeed;
+            float modifiedJumpSpeed = jumpSpeed;
+            if(boostedHeight){
+                modifiedJumpSpeed = jumpSpeed * 2f;
+                moveDirection.y = modifiedJumpSpeed;
+                boostedHeight = false;
+                doubleJumpUsed = false;
+
+            }else{
+                moveDirection.y = jumpSpeed;
+                doubleJumpUsed = true;
+
+            }
             remainingJumpCooldown = JUMP_COOLDOWN;
-            doubleJumpUsed = true;
             remainingDashDuration = 0;
         }
 
