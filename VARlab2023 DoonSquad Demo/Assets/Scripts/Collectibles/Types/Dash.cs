@@ -29,7 +29,9 @@ public class Dash : Collectible
         {
             player = other.gameObject.GetComponent<PlayerController>();
             OnCollect();
-            Destroy(gameObject);
+
+            //wait 5 seconds, then respawn
+            StartCoroutine(Timer(5));
         }
     }
 }
