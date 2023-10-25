@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
 
+    //animator
+    public Animator anim;
+
     //boosted jump height
     public bool boostedHeight = false;
 
@@ -39,6 +42,9 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
 
+        //get animator from player
+        anim = GetComponent<Animator>();
+
         // Hides cursor while playing. Uncomment to see cursor.
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -47,6 +53,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //if player velocity is greater than 0, play walk animation
+        if(characterController.velocity.magnitude > 0){
+            anim.SetBool("Run", true);
+        }else{
+            anim.SetBool("Run", false);
+        }
+
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
@@ -102,6 +116,7 @@ public class PlayerController : MonoBehaviour
             }else{
                 moveDirection.y = jumpSpeed;
             }
+            anim.SetTrigger("Jump");
             remainingJumpCooldown = JUMP_COOLDOWN;
             remainingDashDuration = 0;
         }
@@ -125,6 +140,7 @@ public class PlayerController : MonoBehaviour
                 doubleJumpUsed = true;
 
             }
+            anim.SetTrigger("Jump");
             remainingJumpCooldown = JUMP_COOLDOWN;
             remainingDashDuration = 0;
         }
