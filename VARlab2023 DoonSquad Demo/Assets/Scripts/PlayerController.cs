@@ -8,8 +8,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float walkingSpeed = 10.0f;
-    public float jumpSpeed = 8.0f;
+    public float BASE_WALKING_SPEED = 10.0f;
+    public float walkingSpeed;
+
+    public float BASE_JUMP_SPEED = 8.0f;
+    public float jumpSpeed;
+
     public float gravity = 20.0f;
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
@@ -28,13 +32,21 @@ public class PlayerController : MonoBehaviour
     public bool dashUsed = false;
     private const float DASH_COOLDOWN = 1f;
     public float remainingDashCooldown = 0;
-    public const float DASH_SPEED = 30.0f;
     public const float DASH_DURATION = 0.6f;
     public float remainingDashDuration = 0;
+
+    public float BASE_DASH_SPEED = 30.0f;
+    public float dashSpeed;
+
+    public bool isBouncing = false;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+
+        jumpSpeed = BASE_JUMP_SPEED;
+        walkingSpeed = BASE_WALKING_SPEED;
+        dashSpeed = BASE_DASH_SPEED;
 
         // Hides cursor while playing. Uncomment to see cursor.
         // Cursor.lockState = CursorLockMode.Locked;
@@ -71,13 +83,13 @@ public class PlayerController : MonoBehaviour
 
         if (remainingDashDuration > DASH_DURATION / 2)
         {
-            curSpeedX = canMove ? DASH_SPEED * Input.GetAxis("Vertical") : 0;
-            curSpeedY = canMove ? DASH_SPEED * Input.GetAxis("Horizontal") : 0;
+            curSpeedX = canMove ? dashSpeed * Input.GetAxis("Vertical") : 0;
+            curSpeedY = canMove ? dashSpeed * Input.GetAxis("Horizontal") : 0;
         }
-        else if(remainingDashDuration > 0 && DASH_SPEED * (remainingDashDuration / DASH_DURATION) > walkingSpeed)
+        else if(remainingDashDuration > 0 && dashSpeed * (remainingDashDuration / DASH_DURATION) > walkingSpeed)
         {
-            curSpeedX = canMove ? DASH_SPEED * (remainingDashDuration / DASH_DURATION) * Input.GetAxis("Vertical") : 0;
-            curSpeedY = canMove ? DASH_SPEED * (remainingDashDuration / DASH_DURATION) * Input.GetAxis("Horizontal") : 0;
+            curSpeedX = canMove ? dashSpeed * (remainingDashDuration / DASH_DURATION) * Input.GetAxis("Vertical") : 0;
+            curSpeedY = canMove ? dashSpeed * (remainingDashDuration / DASH_DURATION) * Input.GetAxis("Horizontal") : 0;
         }
         else
         {
@@ -94,6 +106,10 @@ public class PlayerController : MonoBehaviour
             moveDirection.y = jumpSpeed;
             remainingJumpCooldown = JUMP_COOLDOWN;
             remainingDashDuration = 0;
+        }
+        else if (isBouncing && movementDirectionY < 0)
+        {
+            moveDirection.y = - movementDirectionY;
         }
         else
         {
