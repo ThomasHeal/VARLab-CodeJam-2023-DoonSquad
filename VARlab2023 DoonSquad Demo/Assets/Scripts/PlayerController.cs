@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 
@@ -17,6 +18,10 @@ public class PlayerController : MonoBehaviour
 
     //animator
     public Animator anim;
+
+    //particle effects for collectibles
+    // public GameObject dashEffect;
+    public GameObject jumpEffect;
 
     //boosted jump height
     public bool boostedHeight = false;
@@ -53,6 +58,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!characterController.isGrounded){
+            Debug.Log("not grounded");
+        }
 
         //if player velocity is greater than 0, play walk animation
         if(characterController.velocity.magnitude > 0){
@@ -74,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
         if (characterController.isGrounded)
         {
+            Debug.Log("Grounded");
             doubleJumpUsed = false;
             dashUsed = false;
         }
@@ -84,6 +93,7 @@ public class PlayerController : MonoBehaviour
             remainingDashDuration = DASH_DURATION;
             remainingDashCooldown = DASH_COOLDOWN;
             dashUsed = true;
+            
         }
 
         if (remainingDashDuration > DASH_DURATION / 2)
@@ -104,6 +114,14 @@ public class PlayerController : MonoBehaviour
 
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+
+
+        //particle effects from jump effect collectible.
+        if(boostedHeight){
+            jumpEffect.SetActive(true);
+        }else{
+            jumpEffect.SetActive(false);
+        }
 
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && canMove && characterController.isGrounded)
@@ -138,7 +156,6 @@ public class PlayerController : MonoBehaviour
             }else{
                 moveDirection.y = jumpSpeed;
                 doubleJumpUsed = true;
-
             }
             anim.SetTrigger("Jump");
             remainingJumpCooldown = JUMP_COOLDOWN;
@@ -150,11 +167,10 @@ public class PlayerController : MonoBehaviour
         {
             moveDirection.y -= gravity * Time.deltaTime;
         }
-
-        // No elevation change while dashing
+        // // No elevation change while dashing
         if (remainingDashDuration > DASH_DURATION / 3)
         {
-            moveDirection.y = 0;
+            moveDirection.y = -0.3f;
         }
 
         // Move the controller

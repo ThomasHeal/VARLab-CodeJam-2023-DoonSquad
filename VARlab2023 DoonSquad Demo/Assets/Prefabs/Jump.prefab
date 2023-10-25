@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 189692451704105500}
   - component: {fileID: 8140082007865777171}
+  - component: {fileID: 2607515225631481964}
   m_Layer: 0
   m_Name: Jump
   m_TagString: Untagged
@@ -137,3 +138,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2607515225631481964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2895565762823372406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c8a0d4be7b5eb4dbd517413594bd61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 1571217798579378292}
