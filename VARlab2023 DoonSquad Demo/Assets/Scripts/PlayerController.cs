@@ -8,6 +8,10 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    //spawn point
+    public Transform spawnPoint;
+    //starting spawn
+    public Transform startingSpawn;
     // Start is called before the first frame update
     public float BASE_WALKING_SPEED = 10.0f;
     public float walkingSpeed;
@@ -70,8 +74,25 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //set the spawn point to currently selected spawn point
+        if(GameManager.instance.selectedSpawnPoint != null){
+            spawnPoint = GameManager.instance.selectedSpawnPoint;
+        }else{
+            spawnPoint = startingSpawn;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            GameManager.instance.pauseMenu.SetActive(true);
+            //set the game state to paused
+            GameManager.instance.state = GameManager.State.Paused;
+            
+        }
+        if(isDead){
+            Spawn();
+            isDead = false;
+        }
         if(!characterController.isGrounded){
-            Debug.Log("not grounded");
+            // Debug.Log("not grounded");
         }
 
         //if player velocity is greater than 0, play walk animation
@@ -94,7 +115,6 @@ public class PlayerController : MonoBehaviour
 
         if (characterController.isGrounded)
         {
-            Debug.Log("Grounded");
             doubleJumpUsed = false;
             dashUsed = false;
         }
@@ -192,13 +212,37 @@ public class PlayerController : MonoBehaviour
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
 
+    // Only rotate the camera when the game is not paused
+    if (GameManager.instance.state != GameManager.State.Paused)
+    {
+        // Your camera rotation code here
         // Rotation
-        if(canMove)
+        if (canMove)
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        }
+    }
+
+
+        
+    }
+
+    //boolean for player isDead
+    public bool isDead = false;
+    //player spawn function
+    public void Spawn(){
+        characterController.enabled = false;
+        characterController.transform.position = spawnPoint.position;
+        characterController.enabled = true;
+
+    }
+
+    void OnTriggerEnter(Collider other){
+        if (other.gameObject.CompareTag("DeadZone")){
+            isDead = true;
         }
     }
 }
