@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/UI_Playground.unity
     guid: bc889c44d785bcd4bb78b5e95ba538ef
   - enabled: 1
-    path: Assets/Scenes/Level_HUB.unity
-    guid: 7baffea372979374c8b9536228379b04
+    path: Assets/Scenes/Collectible.unity
+    guid: 2ff5b7ff5edc2684aa8b59442e21c4e8
   - enabled: 1
-    path: Assets/Scenes/Level_1_Factory.unity
-    guid: 6e898747e0f376c43b7c5ce35b67f4d2
+    path: Assets/Scenes/Level_management.unity
+    guid: cc27411e4de29524fb3fb2757d13a17a
   m_configObjects: {}

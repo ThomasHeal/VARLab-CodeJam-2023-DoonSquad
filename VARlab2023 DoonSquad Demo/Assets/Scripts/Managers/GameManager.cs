@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     {
         //set instance to this
         instance = this;
+
+
     }
 
     //public void playstate
@@ -90,7 +92,7 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        else if(state == State.Playing)
+        else
         {
             //if the state is not paused lock the mouse
             Cursor.lockState = CursorLockMode.Locked;

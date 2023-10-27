@@ -14,11 +14,7 @@ public class Dash : Collectible
     public override void OnCollect()
     {
         Debug.Log("Dash collected");
-
-        // Dash Power Up collected SFX
-        AudioManager.instance.PlaySFX("DashPowerUp");
-
-        if (player != null){
+        if(player != null){
             player.remainingDashCooldown = dashReset;
             player.remainingDashDuration = dashReset;
 
