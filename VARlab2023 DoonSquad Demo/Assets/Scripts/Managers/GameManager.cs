@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
     //selected spawn point
     public Transform selectedSpawnPoint;
 
+    //timer that counts up
+    public float timer;
+
+    //textmesh pro for text
+    public TMPro.TextMeshProUGUI timerText;
+
     //state
     public State state;
 
@@ -30,6 +36,8 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             instance = this;
         }else Destroy(gameObject);
+
+        
     }
 
 
@@ -70,7 +78,9 @@ public class GameManager : MonoBehaviour
     //update
     void Update()
     {
-
+        //start timer counting
+        timer += Time.deltaTime;
+        timerText.text = "Run Time: " + timer.ToString("F2");
         //if the state is paused unlock the mouse
         if (state == State.Paused)
         {
