@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2513656905990616561
+--- !u!1001 &8915437901223286103
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,98 +8,98 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: -8679921383154817045, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_LocalScale.x
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: -8679921383154817045, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_LocalScale.y
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: -8679921383154817045, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: -8679921383154817045, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.685414
+      value: -7.8370595
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: -8679921383154817045, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.51
+      value: 0.96
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: -8679921383154817045, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.36
+      value: 10.41
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: -8679921383154817045, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: -8679921383154817045, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: -8679921383154817045, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: -8679921383154817045, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: -8679921383154817045, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: -8679921383154817045, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: -8679921383154817045, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - target: {fileID: 919132149155446097, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       propertyPath: m_Name
-      value: blockSnowSlopeHalf
+      value: candyCaneMint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 213a8844d8d853f4782d2491d7ab253c,
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1fba142dc4ec6ca4c80211230d42e899,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9175371245345614863}
-  m_SourcePrefab: {fileID: 100100000, guid: 213a8844d8d853f4782d2491d7ab253c, type: 3}
---- !u!1 &3324541025141786784 stripped
+      addedObject: {fileID: 6278094185782854559}
+  m_SourcePrefab: {fileID: 100100000, guid: 1fba142dc4ec6ca4c80211230d42e899, type: 3}
+--- !u!1 &8608795997175998470 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 213a8844d8d853f4782d2491d7ab253c,
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1fba142dc4ec6ca4c80211230d42e899,
     type: 3}
-  m_PrefabInstance: {fileID: 2513656905990616561}
+  m_PrefabInstance: {fileID: 8915437901223286103}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &9175371245345614863
-MeshCollider:
+--- !u!65 &6278094185782854559
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3324541025141786784}
+  m_GameObject: {fileID: 8608795997175998470}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -111,7 +111,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -767880497394888471, guid: 213a8844d8d853f4782d2491d7ab253c, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.138294, y: 0.25369298, z: 0.039899997}
+  m_Center: {x: 0, y: 0.12684649, z: 0}
