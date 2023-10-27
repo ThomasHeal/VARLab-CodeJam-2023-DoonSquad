@@ -9,17 +9,53 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
+    //string for the song
+    public string song;
+
+    //list of audio clips for songs
+    public AudioClip[] songs;
+
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+
         }
         else
         {
             Destroy(gameObject);
             return;
+        }
+    }
+
+    //set music
+    void SetMusic()
+    {
+            song = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            musicSource.clip = Array.Find(songs, sound => sound.name == song);
+            if(musicSource.clip == null)
+            {
+                Debug.LogWarning("Song:" + song + " not found");
+            }
+            else
+            {
+                Debug.Log(song + " set" + musicSource.clip);
+            }
+    }
+
+    //update
+    void Update()
+    {
+        if(song != UnityEngine.SceneManagement.SceneManager.GetActiveScene().name)
+        {
+            //stop the music 
+            musicSource.Stop();
+            //set the music
+            SetMusic();
+            //play the music
+            musicSource.Play();
         }
     }
 
