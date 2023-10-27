@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class SpawnPointManager : MonoBehaviour
 {
+
+    //spawn point effect
+    public GameObject spawnEffect;
     //add myself to the list of spawn points
     void Start()
     {
         GameManager.instance.spawnPoints.Add(transform);
+        
     }
 
     //on trigger enter
@@ -28,9 +32,11 @@ public class SpawnPointManager : MonoBehaviour
         if (GameManager.instance.selectedSpawnPoint == transform)
         {
             GetComponent<Renderer>().material.color = Color.green;
+            spawnEffect.SetActive(true);
         }else{
             //else change to the color red
             GetComponent<Renderer>().material.color = Color.grey;
+            spawnEffect.SetActive(false);
         }
     }
 }

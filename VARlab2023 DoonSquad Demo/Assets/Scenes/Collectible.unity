@@ -1163,11 +1163,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1708178580766049096, guid: aba554d5f1058dd45814d69a29b1fca1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4307853526698379774, guid: aba554d5f1058dd45814d69a29b1fca1,
         type: 3}
       propertyPath: m_Name
@@ -2062,6 +2057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a045c51fcc9f4e64b80f592ae164724d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnEffect: {fileID: 0}
 --- !u!135 &1202403920
 SphereCollider:
   m_ObjectHideFlags: 0

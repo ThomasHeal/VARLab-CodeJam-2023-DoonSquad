@@ -81,11 +81,14 @@ public class PlayerController : MonoBehaviour
             spawnPoint = startingSpawn;
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape)){
+        if(Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.state == GameManager.State.Playing){
             GameManager.instance.pauseMenu.SetActive(true);
             //set the game state to paused
             GameManager.instance.state = GameManager.State.Paused;
-            
+        }else if(Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.state == GameManager.State.Paused){
+            GameManager.instance.pauseMenu.SetActive(false);
+            //set the game state to playing
+            GameManager.instance.state = GameManager.State.Playing;
         }
         if(isDead){
             Spawn();
