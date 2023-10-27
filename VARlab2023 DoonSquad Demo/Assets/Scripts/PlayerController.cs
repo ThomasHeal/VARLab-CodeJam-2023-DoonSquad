@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 {
     //spawn point
     public Transform spawnPoint;
+    //starting spawn
+    public Transform startingSpawn;
     // Start is called before the first frame update
     public float BASE_WALKING_SPEED = 10.0f;
     public float walkingSpeed;
@@ -72,6 +74,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //set the spawn point to currently selected spawn point
+        if(GameManager.instance.selectedSpawnPoint != null){
+            spawnPoint = GameManager.instance.selectedSpawnPoint;
+        }else{
+            spawnPoint = startingSpawn;
+        }
+
         if(Input.GetKeyDown(KeyCode.Escape)){
             GameManager.instance.pauseMenu.SetActive(true);
             //set the game state to paused

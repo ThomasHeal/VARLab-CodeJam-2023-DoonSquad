@@ -13,13 +13,18 @@ public class GameManager : MonoBehaviour
 
     public GameObject pauseMenu;
 
+    //list of spawn points
+    public List<Transform> spawnPoints = new List<Transform>();
+
+    //selected spawn point
+    public Transform selectedSpawnPoint;
+
     //state
     public State state;
 
     //dpnt destroy on load
     void Awake()
     {
-
         if (instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -36,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         //set instance to this
         instance = this;
+
 
     }
 
@@ -64,11 +70,14 @@ public class GameManager : MonoBehaviour
     //update
     void Update()
     {
+
         //if the state is paused unlock the mouse
         if (state == State.Paused)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            Time.timeScale = 0;
+
         }else if(state == State.MainMenu){
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -78,6 +87,7 @@ public class GameManager : MonoBehaviour
             //if the state is not paused lock the mouse
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            Time.timeScale = 1;
         }
     }
 }
