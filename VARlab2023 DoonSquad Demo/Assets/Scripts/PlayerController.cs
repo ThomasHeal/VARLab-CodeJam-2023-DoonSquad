@@ -81,14 +81,11 @@ public class PlayerController : MonoBehaviour
             spawnPoint = startingSpawn;
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.state == GameManager.State.Playing){
+        if(Input.GetKeyDown(KeyCode.Escape)){
             GameManager.instance.pauseMenu.SetActive(true);
             //set the game state to paused
             GameManager.instance.state = GameManager.State.Paused;
-        }else if(Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.state == GameManager.State.Paused){
-            GameManager.instance.pauseMenu.SetActive(false);
-            //set the game state to playing
-            GameManager.instance.state = GameManager.State.Playing;
+            
         }
         if(isDead){
             Spawn();
@@ -116,12 +113,6 @@ public class PlayerController : MonoBehaviour
         remainingDashCooldown = Math.Max(remainingDashCooldown - Time.deltaTime, 0);
         remainingDashDuration = Math.Max(remainingDashDuration - Time.deltaTime, 0);
 
-        // Play Landing SFX
-        // Unfortunately we don't have a good way to check if someone has
-        // jump, but we can check if some has double jumped
-        if (characterController.isGrounded && doubleJumpUsed)
-            AudioManager.instance.PlaySFX("Landing");
-
         if (characterController.isGrounded)
         {
             doubleJumpUsed = false;
@@ -131,9 +122,6 @@ public class PlayerController : MonoBehaviour
         // Dash
         if (Input.GetKeyDown(KeyCode.LeftShift) && canMove && !dashUsed && remainingDashCooldown == 0)
         {
-            // Dash SFX
-            AudioManager.instance.PlaySFX("Dash");
-
             remainingDashDuration = DASH_DURATION;
             remainingDashCooldown = DASH_COOLDOWN;
             dashUsed = true;
@@ -170,9 +158,6 @@ public class PlayerController : MonoBehaviour
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && canMove && characterController.isGrounded)
         {
-            // Jump SFX
-            AudioManager.instance.PlaySFX("Jump");
-
             float modifiedJumpSpeed = jumpSpeed;
             if(boostedHeight){
                 modifiedJumpSpeed = jumpSpeed * 2f;
@@ -197,9 +182,6 @@ public class PlayerController : MonoBehaviour
         // Double jump
         if (Input.GetKeyDown(KeyCode.Space) && canMove && !doubleJumpUsed && remainingJumpCooldown == 0)
         {
-            // Jump SFX
-            AudioManager.instance.PlaySFX("Jump");
-
             float modifiedJumpSpeed = jumpSpeed;
             if(boostedHeight){
                 modifiedJumpSpeed = jumpSpeed * 2f;
