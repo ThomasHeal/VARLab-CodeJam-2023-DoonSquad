@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 [System.Serializable]
-public class CustomSound : MonoBehaviour
+public class Sound : MonoBehaviour
 {
     public string soundName;
     public AudioClip clip;
@@ -15,7 +15,4 @@ public class CustomSound : MonoBehaviour
     public float pitch;
 
     public bool loop;
-
-    [HideInInspector]
-    public AudioSource source;
 }

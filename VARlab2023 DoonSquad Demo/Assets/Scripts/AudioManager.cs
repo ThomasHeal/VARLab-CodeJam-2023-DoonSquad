@@ -4,43 +4,64 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    public CustomSound[] sounds;
+    public Sound[] music, sfx;
+    public AudioSource musicSource, sfxSource;
 
     public static AudioManager instance;
 
     void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
         {
             Destroy(gameObject);
             return;
         }
+    }
 
-        DontDestroyOnLoad(gameObject);
-
-        foreach(CustomSound s in sounds)
+    public void PlayMusic (string name)
+    {
+        Sound s = Array.Find(music, sound => sound.soundName == name);
+        if (s == null)
+            Debug.LogWarning("Sound:" + name + " not found");
+        else
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-
-            s.source.mute = s.mute;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
+            musicSource.clip = s.clip;
+            musicSource.Play();
+            Debug.Log(name + " played");
         }
     }
 
-    public void Play (string name)
+    public void ToggleMusic()
     {
-        CustomSound s = Array.Find(sounds, sound => sound.soundName == name);
-        Debug.Log(name + " played");
+        if (musicSource.mute)
+            musicSource.mute = false;
+        else
+            musicSource.mute = true;
+    }
+
+    public void PlaySFX(string name)
+    {
+        Sound s = Array.Find(sfx, sound => sound.soundName == name);
         if (s == null)
-        {
             Debug.LogWarning("Sound:" + name + " not found");
-            return;
+        else
+        {
+            sfxSource.clip = s.clip;
+            sfxSource.PlayOneShot(s.clip);
+            Debug.Log(name + " played");
         }
-        s.source.Play();
+    }
+
+    public void ToggleSFX()
+    {
+        if (sfxSource.mute)
+            sfxSource.mute = false;
+        else
+            sfxSource.mute = true;
     }
 }
