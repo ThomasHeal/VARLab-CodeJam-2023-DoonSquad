@@ -22,5 +22,8 @@ public class SceneManager : MonoBehaviour
     public void LoadScene(int sceneIndex)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex);
+        
+        // Level Start SFX
+        AudioManager.instance.PlaySFX("LevelStart");
     }
 }

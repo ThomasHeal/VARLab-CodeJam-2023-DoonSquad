@@ -17,7 +17,11 @@ public class Jump : Collectible
     public override void OnCollect()
     {
         Debug.Log("Jump collected");
-        if(player != null){
+
+        // Jump Power Up collected SFX
+        AudioManager.instance.PlaySFX("JumpPowerUp");
+
+        if (player != null){
             player.remainingJumpCooldown = jumpReset;
             player.boostedHeight = true;
             player.doubleJumpUsed = false;
