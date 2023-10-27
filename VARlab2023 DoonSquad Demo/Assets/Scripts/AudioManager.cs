@@ -88,6 +88,10 @@ public class AudioManager : MonoBehaviour
         else
         {
             sfxSource.clip = s.clip;
+            sfxSource.mute = s.mute;
+            sfxSource.volume = s.volume;
+            sfxSource.pitch = s.pitch;
+            sfxSource.loop = s.loop;
             sfxSource.PlayOneShot(s.clip);
             Debug.Log(name + " played");
         }
