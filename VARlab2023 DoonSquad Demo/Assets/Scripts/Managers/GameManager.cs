@@ -13,6 +13,15 @@ public class GameManager : MonoBehaviour
 
     public GameObject pauseMenu;
 
+    //mouse sensitivity
+    public float mouseSensitivity = 2.0f;
+
+    //function to change look sensitivity
+    public void ChangeLookSensitivity(float value)
+    {
+        mouseSensitivity = value;
+    }
+
     //list of spawn points
     public List<Transform> spawnPoints = new List<Transform>();
 

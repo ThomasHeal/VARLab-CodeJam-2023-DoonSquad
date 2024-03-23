@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
     public float gravity = 20.0f;
     public Camera playerCamera;
+    // public float lookSpeed = 2.0f;
+    //make look speed a slider between 0-2f
+    [Range(0, 2f)]
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
 
@@ -74,34 +77,48 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //set mouse sensitibity to the slider value from game manager options
+        lookSpeed = GameManager.instance.mouseSensitivity;
+        
         //set the spawn point to currently selected spawn point
-        if(GameManager.instance.selectedSpawnPoint != null){
+        if (GameManager.instance.selectedSpawnPoint != null)
+        {
             spawnPoint = GameManager.instance.selectedSpawnPoint;
-        }else{
+        }
+        else
+        {
             spawnPoint = startingSpawn;
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.state == GameManager.State.Playing){
+        if (Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.state == GameManager.State.Playing)
+        {
             GameManager.instance.pauseMenu.SetActive(true);
             //set the game state to paused
             GameManager.instance.state = GameManager.State.Paused;
-        }else if(Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.state == GameManager.State.Paused){
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && GameManager.instance.state == GameManager.State.Paused)
+        {
             GameManager.instance.pauseMenu.SetActive(false);
             //set the game state to playing
             GameManager.instance.state = GameManager.State.Playing;
         }
-        if(isDead){
+        if (isDead)
+        {
             Spawn();
             isDead = false;
         }
-        if(!characterController.isGrounded){
+        if (!characterController.isGrounded)
+        {
             // Debug.Log("not grounded");
         }
 
         //if player velocity is greater than 0, play walk animation
-        if(characterController.velocity.magnitude > 0){
+        if (characterController.velocity.magnitude > 0)
+        {
             anim.SetBool("Run", true);
-        }else{
+        }
+        else
+        {
             anim.SetBool("Run", false);
         }
 
@@ -137,7 +154,7 @@ public class PlayerController : MonoBehaviour
             remainingDashDuration = DASH_DURATION;
             remainingDashCooldown = DASH_COOLDOWN;
             dashUsed = true;
-            
+
         }
 
         if (remainingDashDuration > DASH_DURATION / 2)
@@ -145,7 +162,7 @@ public class PlayerController : MonoBehaviour
             curSpeedX = canMove ? dashSpeed * Input.GetAxis("Vertical") : 0;
             curSpeedY = canMove ? dashSpeed * Input.GetAxis("Horizontal") : 0;
         }
-        else if(remainingDashDuration > 0 && dashSpeed * (remainingDashDuration / DASH_DURATION) > walkingSpeed)
+        else if (remainingDashDuration > 0 && dashSpeed * (remainingDashDuration / DASH_DURATION) > walkingSpeed)
         {
             curSpeedX = canMove ? dashSpeed * (remainingDashDuration / DASH_DURATION) * Input.GetAxis("Vertical") : 0;
             curSpeedY = canMove ? dashSpeed * (remainingDashDuration / DASH_DURATION) * Input.GetAxis("Horizontal") : 0;
@@ -161,9 +178,12 @@ public class PlayerController : MonoBehaviour
 
 
         //particle effects from jump effect collectible.
-        if(boostedHeight){
+        if (boostedHeight)
+        {
             jumpEffect.SetActive(true);
-        }else{
+        }
+        else
+        {
             jumpEffect.SetActive(false);
         }
 
@@ -174,11 +194,14 @@ public class PlayerController : MonoBehaviour
             AudioManager.instance.PlaySFX("Jump");
 
             float modifiedJumpSpeed = jumpSpeed;
-            if(boostedHeight){
+            if (boostedHeight)
+            {
                 modifiedJumpSpeed = jumpSpeed * 2f;
                 moveDirection.y = modifiedJumpSpeed;
                 boostedHeight = false;
-            }else{
+            }
+            else
+            {
                 moveDirection.y = jumpSpeed;
             }
             anim.SetTrigger("Jump");
@@ -187,7 +210,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (isBouncing && movementDirectionY < 0)
         {
-            moveDirection.y = - movementDirectionY;
+            moveDirection.y = -movementDirectionY;
         }
         else
         {
@@ -201,13 +224,16 @@ public class PlayerController : MonoBehaviour
             AudioManager.instance.PlaySFX("Jump");
 
             float modifiedJumpSpeed = jumpSpeed;
-            if(boostedHeight){
+            if (boostedHeight)
+            {
                 modifiedJumpSpeed = jumpSpeed * 2f;
                 moveDirection.y = modifiedJumpSpeed;
                 boostedHeight = false;
                 doubleJumpUsed = false;
 
-            }else{
+            }
+            else
+            {
                 moveDirection.y = jumpSpeed;
                 doubleJumpUsed = true;
             }
@@ -230,36 +256,37 @@ public class PlayerController : MonoBehaviour
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
 
-    // Only rotate the camera when the game is not paused
-    if (GameManager.instance.state != GameManager.State.Paused)
-    {
-        // Your camera rotation code here
-        // Rotation
-        if (canMove)
+        // Only rotate the camera when the game is not paused
+        if (GameManager.instance.state != GameManager.State.Paused)
         {
-            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+            // Your camera rotation code here
+            // Rotation
+            if (canMove)
+            {
+                rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+                rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+                playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+                transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+            }
         }
-    }
 
-
-        
     }
 
     //boolean for player isDead
     public bool isDead = false;
     //player spawn function
-    public void Spawn(){
+    public void Spawn()
+    {
         characterController.enabled = false;
         characterController.transform.position = spawnPoint.position;
         characterController.enabled = true;
 
     }
 
-    void OnTriggerEnter(Collider other){
-        if (other.gameObject.CompareTag("DeadZone")){
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("DeadZone"))
+        {
             isDead = true;
         }
     }
