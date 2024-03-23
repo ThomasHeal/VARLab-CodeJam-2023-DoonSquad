@@ -40,10 +40,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-
-
-    
-
     //start
     void Start()
     {
@@ -67,7 +63,6 @@ public class GameManager : MonoBehaviour
         //set state to paused
         state = State.Paused;
         Time.timeScale = 0;
-
     }
 
     public void MainMenu(){

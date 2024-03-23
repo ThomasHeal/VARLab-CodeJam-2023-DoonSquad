@@ -204,9 +204,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f104d7199181a429a34efa70bcedd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 10
+  spawnPoint: {fileID: 0}
+  startingSpawn: {fileID: 0}
+  BASE_WALKING_SPEED: 7
+  walkingSpeed: 7
+  BASE_JUMP_SPEED: 8
   jumpSpeed: 8
-  gravity: 20
+  gravity: 15
   playerCamera: {fileID: 3411017398032878085}
   lookSpeed: 2
   lookXLimit: 75
@@ -219,6 +223,10 @@ MonoBehaviour:
   dashUsed: 0
   remainingDashCooldown: 0
   remainingDashDuration: 0
+  BASE_DASH_SPEED: 20
+  dashSpeed: 0
+  isBouncing: 0
+  isDead: 0
 --- !u!95 &4682563326114826961
 Animator:
   serializedVersion: 5
